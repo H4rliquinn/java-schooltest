@@ -49,4 +49,10 @@ public class CourseServiceImpl implements CourseService
     {
         return courserepos.findCourseByCourseid(id);
     }
+
+    @Override
+    public void save(Course course)
+    {
+        courserepos.save(course);
+    }
 }

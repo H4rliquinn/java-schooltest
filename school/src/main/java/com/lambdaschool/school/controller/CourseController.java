@@ -4,10 +4,15 @@ import com.lambdaschool.school.model.Course;
 import com.lambdaschool.school.service.CourseService;
 import com.lambdaschool.school.view.CountStudentsInCourses;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 @RestController
@@ -35,6 +40,17 @@ public class CourseController
     public ResponseEntity<?> getCountStudentsInCourses()
     {
         return new ResponseEntity<>(courseService.getCountStudentsInCourse(), HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/restaurant",
+            consumes = {"application/json"},
+            produces = {"application/json"})
+    public ResponseEntity<?> addNewRestaurant(@Valid
+                                              @RequestBody
+                                                      Course newCourse) throws URISyntaxException
+    {
+        courseService.save(newCourse);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @DeleteMapping("/courses/{courseid}")
