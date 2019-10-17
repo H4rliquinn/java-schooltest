@@ -1,6 +1,7 @@
 package com.lambdaschool.school.service;
 
 import com.lambdaschool.school.model.Course;
+import com.lambdaschool.school.model.Instructor;
 import com.lambdaschool.school.repository.CourseRepository;
 import com.lambdaschool.school.view.CountStudentsInCourses;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,8 +52,12 @@ public class CourseServiceImpl implements CourseService
     }
 
     @Override
-    public void save(Course course)
+    public Course save(Course course)
     {
-        courserepos.save(course);
+        Course newCourse = new Course();
+        newCourse.setCoursename(course.getCoursename());
+        newCourse.setInstructor(course.getInstructor());
+
+        return courserepos.save(newCourse);
     }
 }

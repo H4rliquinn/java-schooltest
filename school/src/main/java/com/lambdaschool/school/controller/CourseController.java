@@ -42,12 +42,10 @@ public class CourseController
         return new ResponseEntity<>(courseService.getCountStudentsInCourse(), HttpStatus.OK);
     }
 
-    @PostMapping(value = "/restaurant",
+    @PostMapping(value = "/course/add",
             consumes = {"application/json"},
             produces = {"application/json"})
-    public ResponseEntity<?> addNewRestaurant(@Valid
-                                              @RequestBody
-                                                      Course newCourse) throws URISyntaxException
+    public ResponseEntity<?> addNewCourse(@Valid @RequestBody Course newCourse) throws URISyntaxException
     {
         courseService.save(newCourse);
         return new ResponseEntity<>(HttpStatus.CREATED);

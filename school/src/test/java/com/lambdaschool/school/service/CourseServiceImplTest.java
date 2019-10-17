@@ -1,6 +1,8 @@
 package com.lambdaschool.school.service;
 
 import com.lambdaschool.school.SchoolApplication;
+import com.lambdaschool.school.model.Course;
+import com.lambdaschool.school.model.Instructor;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
@@ -52,5 +54,16 @@ public class CourseServiceImplTest
     public void z_deleteNotFound()
     {
         courseService.delete(100L);
+    }
+
+    @Test
+    public void save()
+    {
+        Instructor i1= new Instructor("Sally");
+        i1.setInstructid(1);
+        Course c1 = new Course( "New Stuff", i1);
+
+        courseService.save(c1);
+        assertEquals(7,courseService.findAll().size());
     }
 }
